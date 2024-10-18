@@ -2,7 +2,7 @@
     <div class="Home">
         <SigninButton/>
         <br>
-        <p v-if="user">Bienvenue, {{ user.name }}!</p>
+        <p v-if="user">Bienvenue, {{ user.name }}!</p> 
         <p v-else>Veuillez vous connecter pour continuer.</p>
     </div>
 </template>

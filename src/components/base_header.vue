@@ -3,8 +3,8 @@
     <nav>
       <ul>
         <li>
-          <router-link to="/">Home</router-link>
-          <router-link v-if="user" to="/conversations">Conversations</router-link>
+          <router-link to="/">Home</router-link> // default
+          <router-link v-if="user" to="/conversations">Conversations</router-link> // if user is signed in
         </li>
         <li><a href="/about">About</a></li>
         <li><a href="/contact">Contact</a></li>
