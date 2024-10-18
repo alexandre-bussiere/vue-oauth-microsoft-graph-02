@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '@/pages/HomePage.vue';
 import ConversationsIndexPage from '@/pages/ConversationsIndexPage.vue';
 import ConversationShowPage from '@/pages/ConversationShowPage.vue';
+import store from '@/store/user';
 
 const routes = [
     {
@@ -12,12 +13,26 @@ const routes = [
     {
         path: '/conversations',
         name: 'ConversationsIndex',
-        component: ConversationsIndexPage
+        component: ConversationsIndexPage,
+        beforeEnter: (to, from, next) => {
+            if (!store.getters.isAuthenticated) {
+                next('/');
+            } else {
+                next();
+            }
+        }
     },
     {
         path: '/conversations/:id',
         name: 'ConversationShow',
-        component: ConversationShowPage
+        component: ConversationShowPage,
+        beforeEnter: (to, from, next) => {
+            if (!store.getters.isAuthenticated) {
+                next('/');
+            } else {
+                next();
+            }
+        }
     }
 ];
 
