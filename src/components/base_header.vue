@@ -3,14 +3,16 @@
     <nav>
       <ul>
         <li>
-          <router-link to="/">Home</router-link>
-          <router-link v-if="user" to="/conversations">Conversations</router-link>
+          <router-link v-if="user" to="/conversations">Latest Conversations</router-link>
+          <router-link v-else to="/">Home</router-link>
         </li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
+        <li><router-link v-if="user && conversationTextId" :to="{ name: 'ConversationShow', params: { id: conversationTextId } }">
+            Conversations
+          </router-link>
+        </li>
       </ul>
     </nav>
-  </header>
+  </header>  
 </template>
 
 <script>
@@ -19,9 +21,12 @@ import { mapGetters } from 'vuex';
 export default {
   name: 'BaseHeader',
   computed: {
-    ...mapGetters(['getUser']),
+    ...mapGetters(['getUser', 'getConversationTextId']),
     user() {
       return this.getUser;
+    },
+    conversationTextId() {
+      return this.getConversationTextId;
     }
   }
 };
