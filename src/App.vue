@@ -1,5 +1,25 @@
 <template>
   <div id="app">
+    <base_layout>
+      <router-view />
+    </base_layout>
+  </div>
+</template>
+
+<script>
+import base_layout from './components/base_layout.vue';
+
+export default {
+  name: 'App',
+  components: { 
+    base_layout
+  },
+};
+</script>
+
+
+<!-- <template>
+  <div id="app">
     <base_layout :user="user">
       <HomePage :user="user"  @userChanged="updateUser"/>
     </base_layout>
@@ -22,13 +42,12 @@ export default {
     base_layout
   },
   methods: {
-  updateUser(newUser) {
-    this.user = newUser;
-    console.log("User updated:", this.user);
+    updateUser(newUser) {
+      this.user = newUser;
+      console.log("User updated:", this.user);
+    }
   }
-}
-
-}
+};
 
 </script>
 
@@ -38,4 +57,4 @@ export default {
   text-align: center;
   margin-top: 60px;
 }
-</style>
+</style> -->
