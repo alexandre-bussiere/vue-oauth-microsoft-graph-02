@@ -38,6 +38,7 @@ export default {
             name: user.name,
             username: user.username,
           };
+          this.$emit('userChanged', this.user);
         })
         .catch(error => {
           console.error("Error during sign-in:", error);
