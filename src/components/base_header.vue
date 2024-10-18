@@ -2,7 +2,10 @@
   <header class="base-header">
     <nav>
       <ul>
-        <li><a href="../App.vue">Home</a></li>
+        <li>
+          <router-link to="/">Home</router-link>
+          <router-link v-if="user" to="/conversations">Conversations</router-link>
+        </li>
         <li><a href="/about">About</a></li>
         <li><a href="/contact">Contact</a></li>
       </ul>
@@ -11,8 +14,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'BaseHeader',
+  computed: {
+    ...mapGetters(['getUser']),
+    user() {
+      return this.getUser;
+    }
+  }
 };
 </script>
 

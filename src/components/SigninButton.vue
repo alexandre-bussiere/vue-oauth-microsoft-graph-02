@@ -10,6 +10,7 @@
 
 <script>
 import { initialize, signInAndGetUser } from '../lib/microsoftGraph.js';
+import { mapMutations } from 'vuex';
 
 export default {
   data() {
@@ -27,22 +28,22 @@ export default {
       });
   },
   methods: {
+    ...mapMutations(['setUser']),
     handleSignIn() {
       initialize()
         .then(() => {
           return signInAndGetUser();
         })
         .then(user => {
-          // Met à jour l'état avec les informations de l'utilisateur
-          this.user = {
+          this.setUser({
             name: user.name,
-            username: user.username,
-          };
-          this.$emit('userChanged', this.user);
+            username: user.username
+          });
         })
         .catch(error => {
           console.error("Error during sign-in:", error);
         });
+    
     },
   },
 };

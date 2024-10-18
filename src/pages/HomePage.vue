@@ -1,6 +1,6 @@
 <template>
     <div class="Home">
-        <SigninButton @userChanged="updateUser"/>
+        <SigninButton/>
         <br>
         <p v-if="user">Bienvenue, {{ user.name }}!</p>
         <p v-else>Veuillez vous connecter pour continuer.</p>
@@ -9,22 +9,18 @@
 
 <script>
 import SigninButton from '../components/SigninButton.vue';
+import { mapGetters } from 'vuex';
 export default {
   name: 'HomePage',
   components: {
     SigninButton
   },
-  props: {
-    user: {
-      type: Object,
-      default: null
+  computed: {
+    ...mapGetters(['getUser']), 
+    user() {
+      return this.getUser; 
     }
-  },
-  methods: {
-    handleUserChanged(newUser) {
-      this.$emit('userChanged', newUser); // Propage l'événement vers le parent
-    }
-  }
+  }    
 };
 
 </script>
