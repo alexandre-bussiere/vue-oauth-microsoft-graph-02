@@ -1,30 +1,16 @@
 <template>
     <div class="Home">
-        <async-component @click="Wait"/>
+            <SigninButton />
     </div>
 </template>
 
 <script>
-import AsyncComponent from '../components/AsyncComponent.vue';
+import SigninButton from '../components/SigninButton.vue';
 export default {
     name: 'HomePage',
     components: {
-        AsyncComponent,
+        SigninButton,
     },
-    data: () => ({
-        clickCount: 0,
-    }),
-    methods: {
-        Wait() {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                this.clickCount++;
-                console.log(this.clickCount);
-                resolve();
-                }, this.clickCount * 1000); 
-            });
-        }
-    }
 }
 
 </script>
